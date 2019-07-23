@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: lmso-algorithm
-Version: 1.1
+Version: 1.2
 Summary: An Optimized LMS Algorithm
 Home-page: https://github.com/alexgrusu/lmso_algorithm
 Author: Alexandru - George Rusu
@@ -27,8 +27,8 @@ Description: # lmso_algorithm
         
 Keywords: Adaptive filters,Echo cancellation,System identification
 Platform: UNKNOWN
-Classifier: Development Status :: 4 - Beta
-Classifier: Intended Audience :: Researchers, Developers
+Classifier: Development Status :: 6 - Mature
+Classifier: Intended Audience :: Science/Research
 Classifier: Natural Language :: English
 Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
 Classifier: Operating System :: OS Independent

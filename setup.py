@@ -3,7 +3,7 @@ from pathlib import Path
 
 setuptools.setup(
   name = "lmso_algorithm",
-  version = 1.1,
+  version = 1.2,
   long_description = Path("README.md").read_text(),
   packages = setuptools.find_packages(exclude = ["tests", "example"]),
   license = 'GPLv3+',
@@ -14,8 +14,8 @@ setuptools.setup(
   url="https://github.com/alexgrusu/lmso_algorithm",
   install_requires=['numpy', 'scipy'],
   classifiers=[
-        'Development Status :: Completed',
-        'Intended Audience :: Researchers, Developers',
+        'Development Status :: 6 - Mature',
+        'Intended Audience :: Science/Research',
         'Natural Language :: English',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Operating System :: OS Independent',
