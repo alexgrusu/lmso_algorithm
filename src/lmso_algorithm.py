@@ -6,28 +6,59 @@
 import numpy as np
 
 class cir_buf:
+    """
+    Class that defines the concept of circular buffer.
+    """
     def __init__(self, cblen):
         self.cblen = cblen
         self.cb = np.zeros([cblen, 1])
         
     def cb_push(self, x):
+        """
+        Pushes a sample in the circula buffer.
+        :param x: input sample.
+        """
         self.cb = np.vstack((x, self.cb[0 : self.cblen - 1]))
     
     def dot_product(self):
+        """
+        Performs the scalar product of the circular buffer and its self.
+        """
         return ((self.cb).T).dot(self.cb)
 
 
 class fir(cir_buf):
+    """
+    Class that defines the FIR filter.
+    """
     def __init__(self, ford):
         self.ord = ford
         self.coeffs = np.zeros([ford, 1])
     
     def ffir(self, x):
+        """
+        Performs the filtering of an input signal of the same length.
+        :param x: input circular buffer.
+        """
         return ((x.cb).T).dot(self.coeffs)
 
 
 class lmso(fir, cir_buf):
   def __init__(self, ford = 512, cst = 2.165e-6, lam = 0.95, sgmv = 0, sgmw = 0, lniproc = 2, alpha = 1.0, delta = 1e-6):
+    """
+    Constructor that initializes lmso object parameters.
+    :param ford: the length L of the adaptive filter, which is the same as for the input circular buffer.
+    :param cst: small constant that initializes the MSD.
+    :param lam: represents the forgetting factor of the exponential window.
+    :param sgmv: represents the variance of the measurement noise.
+    :param sgmw: represents the variance of the system noise.
+    :param lniproc: how long the initialization process lasts [e.g., int(lniproc) * L].
+    :param alpha: the fixed step-size of the NLMS algorithm used in the initialization process 
+                  for a period of int(lniproc) * L samples.
+    :param delta: the regularization parameter of the NLMS algorithm used in the initialization 
+                  process for a period of int(lniproc) * L samples.
+                  
+    """
     id_vec = np.ones([ford, 1])
     id_matrix = np.diagflat(id_vec)
     
@@ -52,6 +83,10 @@ class lmso(fir, cir_buf):
     self.lam = lam
    
   def lmso_w(self, echo):
+    """
+    This function implements the white version of the LMSO algorithm.
+    :param echo: echo sample.
+    """
     if(self.ln_init_proc == 0):
       self.msd = np.trace(self.ccorr_mat) + self.h.ord * self.sw
       self.ln_init_proc = -1
@@ -75,6 +110,10 @@ class lmso(fir, cir_buf):
     return err
 
   def lmso_g(self, echo):
+    """
+    This function implements the general version of the LMSO algorithm.
+    :param echo: echo sample.
+    """
     self.xcorr_mat = self.lam * self.xcorr_mat + (1 - self.lam) * (self.x.cb).dot((self.x.cb).T)
     err = echo - self.h.ffir(self.x)
     
