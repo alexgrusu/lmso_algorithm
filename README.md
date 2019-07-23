@@ -1,5 +1,5 @@
 # lmso_algorithm
-<p align="justify">
+
 The least-mean-square (LMS) and the normalized least-mean-square (NLMS) algorithms require a trade-off between fast convergence 
 and low misadjustment, obtained by choosing the control parameters. In general, time variable parameters are proposed 
 according to different rules. Many studies on the optimization of the NLMS algorithm imply time variable control parameters 
@@ -15,4 +15,4 @@ The proposed algorithm follows an optimization problem and introduces a variable
 
 [2] G. Enzner, H. Buchner, A. Favrot, and F. Kuech, “Acoustic echo control,” in Academic Press Library in Signal Processing, 
 vol. 4, ch. 30, pp. 807–877, Academic Press 2014.
-</p>
+
